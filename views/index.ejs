@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body class="bg-zinc-900 text-white">
+    <div
+      class="main w-full min-h-screen flex flex-col md:flex-row justify-center items-start gap-10 p-10 overflow-hidden"
+    >
+      <!-- Form Section -->
+      <div class="form w-full max-w-md p-8 bg-zinc-800 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold mb-4 text-blue-400">Create New Task</h2>
+        <form action="/create" method="post">
+          <input
+            type="text"
+            class="block w-full px-3 py-2 mb-4 bg-zinc-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+            placeholder="Title..."
+            name="Title"
+          />
+          <textarea
+            class="block w-full px-3 py-2 mb-4 bg-zinc-700 text-white resize-none rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+            placeholder="Description..."
+            rows="4",
+            name="Description"
+          ></textarea>
+          <input
+            type="submit"
+            value="Create Task"
+            class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 cursor-pointer"
+          />
+        </form>
+      </div>
+
+      <!-- Task Cards Section with Scroll -->
+      <div
+        class="tasks w-full max-w-md h-[calc(100vh-5rem)] overflow-y-auto pr-2 space-y-4"
+      >
+        <% if (files.length > 0) { %> <% files.forEach((val) => { %>
+        <div
+          class="task w-full px-4 py-4 bg-zinc-800 rounded-md shadow-md hover:scale-[1.02] transition-all duration-200"
+        >
+          <h3 class="text-lg font-semibold mb-2 text-blue-400">
+            <%= val %>
+          </h3>
+          <p class="text-sm text-white underline "><a href="/file/<%= val %>" target="_blank" rel="noopener noreferrer">Read more</a></p>
+        </div>
+        <% }); %> <% } else { %>
+        <h2 class="text-zinc-400">No task is added...</h2>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>
+hidden
