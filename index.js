@@ -17,7 +17,6 @@ app.get('/file/:filename',(req,res)=>{
     fs.readFile(`./files/${req.params.filename}`, "utf-8", function(err,filedata){
         res.render('show',{filedata:filedata , filename : req.params.filename})
     })
-   
 })
 app.post('/create',(req,res)=>{
     fs.writeFile(`./files/${req.body.Title.split(' ').join('')}.txt` , req.body.Description , (err)=>{
